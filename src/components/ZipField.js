@@ -6,7 +6,7 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
-import { useQuery, refetch } from 'react-query'
+import { useQuery } from 'react-query'
 import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({

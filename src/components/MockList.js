@@ -19,53 +19,73 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function AlignItemsList() {
+export default function AlignItemsList({ claims }) {
   const classes = useStyles();
 
-  const items = [
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-    { title: 'Brunch this weekend?', name: 'Ali Connors', message:  "I'm baby trust fund taiyaki lumbersexual cloud bread paleo, roof party beard. Jianbing kogi VHS, flannel mlkshk health goth gentrify hella pinterest single-origin coffee four dollar toast cronut pickled. Heirloom mustache aesthetic, humblebrag gastropub hell of brooklyn shabby chic 8-bit brunch +1 squid pork belly letterpress. Taiyaki jean shorts farm-to-table, subway tile deep v street art jianbing." },
-  ]
+  return claims.map((claim, index) => {
+    const {
+      n,
+      censusTract,
+      dateOfLoss,
+      amountPaidOnBuildingClaim,
+      id,
+      floodZone, 
+      amountPaidOnContentsClaim, 
+      group_id,
+      elevationDifference,
+      obstructionType,
+      elevationCertificateIndicator, 
+      primaryResidence,
+      yearOfLoss, 
+      latitude,
+      longitude,
+      reportedCity,
+      state,
+      reportedZipcode,
+      countyCode,
+      totalContentsInsuranceCoverage,
+      originalNBDate,
+      totalBuildingInsuranceCoverage,
+    } = claim
 
-  return items.map((item, index) => (
-    <List key={index} className={classes.root}>
-      <ListItem alignItems="flex-start">
-        <ListItemText
-          primary={item.title}
-          secondary={
-            <>
-              <Typography
-                component="span"
-                variant="body2"
-                className={classes.inline}
-                color="textPrimary"
-              >
-                {item.name}
-              </Typography>
-              {item.message}
-            </>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-    </List>
-  ));
+    return (
+      <List key={id} className={classes.root}>
+        <ListItem alignItems="flex-start">
+          <ListItemText
+            primary={`${reportedCity}, ${state}`}
+            secondary={
+              <>
+                <Typography
+                  component="span"
+                  variant="body2"
+                  className={classes.inline}
+                  color="textPrimary"
+                >
+                  {reportedZipcode + ' : '}
+                </Typography>
+                {`
+                  number: ${n}, 
+                  censusTract: ${censusTract}, 
+                  dateOfLoss: ${dateOfLoss}, 
+                  amountPaidOnBuildingClaim: ${amountPaidOnBuildingClaim}, 
+                  floodZone: ${floodZone}, 
+                  amountPaidOnContentsClaim: ${amountPaidOnContentsClaim}, 
+                  elevationDifference: ${elevationDifference}, 
+                  obstructionType: ${obstructionType}, 
+                  elevationCertificateIndicator: ${elevationCertificateIndicator}, 
+                  primaryResidence: ${primaryResidence}, 
+                  yearOfLoss: ${yearOfLoss}, 
+                  countyCode: ${countyCode}, 
+                  totalContentsInsuranceCoverage: ${totalContentsInsuranceCoverage}, 
+                  originalNBDate: ${originalNBDate}, 
+                  totalBuildingInsuranceCoverage: ${totalBuildingInsuranceCoverage}, 
+                `}
+              </>
+            }
+          />
+        </ListItem>
+        <Divider variant="inset" component="li" />
+      </List>
+    )   
+  })
 }

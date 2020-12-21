@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -7,10 +6,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import { useForm } from 'react-hook-form'
-import { useQuery } from 'react-query'
 import { object, string } from "yup";
 import { yupResolver } from '@hookform/resolvers/yup'
-import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,16 +28,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ZipField() {
+export default function ZipField({ setZip }) {
   const classes = useStyles();
-  const [zip, setZip] = useState('')
-  const fetchFemaClaims = () => axios.get('https://er315fks07.execute-api.us-east-1.amazonaws.com/dev/getfemaclaimsbyzip', { params: { zip } })
-  const { isLoading, error, data, refetch } = useQuery('fetchFemaClaims', fetchFemaClaims, { enabled: false })
-
-  useEffect(() => {
-    // manually refetch
-    zip && refetch();
-  }, [zip])
 
   const validationSchema = 
         object().shape({
@@ -59,8 +48,7 @@ export default function ZipField() {
     setZip(data?.zip)
     reset()
   }
-  
-  console.log('data', data)
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>

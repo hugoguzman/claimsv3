@@ -17,11 +17,10 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   const [zip, setZip] = useState('')
-  const fetchFemaClaims = () => axios.get('https://er315fks07.execute-api.us-east-1.amazonaws.com/dev/getfemaclaimsbyzip', { params: { zip } })
+  const fetchFemaClaims = () => axios.get(process.env.REACT_APP_AWS_URL, { params: { zip } })
   const rcResp = useQuery('fetchFemaClaims', fetchFemaClaims, { enabled: false })
 
   useEffect(() => {
-    // manually refetch
     zip && rcResp.refetch();
   }, [zip])
 

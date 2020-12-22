@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import SearchIcon from '@material-ui/icons/Search';
 import { useForm } from 'react-hook-form'
 import { object, string } from "yup";
@@ -45,8 +47,8 @@ export default function ZipField({ setZip }) {
   })
 
   const onSubmit = (data, e) => {
-    setZip(data?.zip)
     reset()
+    setZip(data?.zip)
   }
 
   return (
@@ -57,6 +59,7 @@ export default function ZipField({ setZip }) {
             <IconButton className={classes.iconButton} aria-label="zip">
               <SearchIcon />
             </IconButton>
+            <FormControl error={Boolean(errors?.zip)}>
               <Input
                 inputRef={register}
                 name="zip"
@@ -64,8 +67,9 @@ export default function ZipField({ setZip }) {
                 className={classes.input}
                 placeholder="Enter Zipcode"
                 inputProps={{ 'aria-label': 'search by zip', maxLength: 5 }}
-                error={errors.hasOwnProperty('zip')}
               />
+              <FormHelperText id="component-error-text">{errors?.zip?.message}</FormHelperText>
+            </FormControl>
               <Button onClick={handleSubmit(onSubmit)} size="small" variant="outlined" color="primary">
                 Search
               </Button>

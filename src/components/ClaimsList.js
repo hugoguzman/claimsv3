@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function AlignItemsList({ claims }) {
+export default function ClaimsList({ claims }) {
   const classes = useStyles();
 
   return claims.map((claim, index) => {

@@ -31,7 +31,7 @@ export default function List({ data = undefined, error = null, isLoading = false
   return (
     <Grid item xs={5} className={classes.root}>
       <Paper className={classes.paper}>
-        { data?.data ? <MockList claims={data?.data}/> : "No Claims Reported: Please enter a new zipcode"}
+        { data?.data.length > 0 ? <MockList claims={data?.data}/> : 'No Claims Reported: Please enter a new zipcode'}
       </Paper>
     </Grid>
   )

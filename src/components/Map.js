@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh', 
     width: '100%'
   },
+  spinner: {
+    margin: 'auto',
+    marginTop: '10%',
+  }
 }));
 
 export default function Map({ status = 'idle', data = undefined, error = null, isLoading = false }) {

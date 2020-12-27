@@ -6,14 +6,17 @@ import ClaimsList from './ClaimsList'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    display: 'flex',
+    justifyContent: 'center',
     maxHeight: 1000,
   },
   paper: {
+    display: 'flex',
+    justifyContent: 'center',
     padding: theme.spacing(2),
     color: theme.palette.text.secondary,
-    maxHeight: '100%', 
-    overflow: 'auto'
+    height: '100vh', 
+    width: '100%'
   },
   spinner: {
     margin: 'auto',
@@ -21,17 +24,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function List({ data = undefined, error = null, isLoading = false }) {
+export default function List({ data = [] }) {
   const classes = useStyles();
 
-  if (isLoading) return <CircularProgress size={80} thickness={3.0} className={classes.spinner}/>;
-
-  if (error) return <Paper>{ "An error has occurred: " + error.message }</Paper>
-
   return (
-    <Grid item xs={5} className={classes.root}>
+    <Grid item item sm={5} xs={12} className={classes.root}>
       <Paper className={classes.paper}>
-        { data?.data.length > 0 ? <ClaimsList claims={data?.data}/> : 'No Claims Reported: Please enter a new zipcode'}
+        { data.length > 0 ? <ClaimsList claims={data?.data}/> : <div>Please click on "get info" on map pin to see claims</div>}
       </Paper>
     </Grid>
   )

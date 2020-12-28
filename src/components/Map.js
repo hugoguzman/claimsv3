@@ -2,8 +2,11 @@ import {useState, useEffect} from 'react'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import RoomIcon from '@material-ui/icons/Room';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { red } from '@material-ui/core/colors';
 import GoogleMapReact from 'google-map-react';
 
 const useStyles = makeStyles((theme) => ({
@@ -22,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
   spinner: {
     margin: 'auto',
     marginTop: '10%',
+  },
+  marker: {
+    color: red[500],
+    fontSize: '2rem'
   }
 }));
 
@@ -39,7 +46,29 @@ export default function Map({ status = 'idle', data = undefined, error = null,
     }
   }, [status, data])
 
-  const Marker = ({ text }) => <div onClick={() => setShowList(true)}>{text}</div>;
+  const HtmlTooltip = withStyles((theme) => ({
+    tooltip: {
+      // backgroundColor: '#f5f5f9',
+      // color: 'rgba(0, 0, 0, 0.87)',
+      maxWidth: 220,
+      fontSize: theme.typography.pxToRem(12),
+      border: '1px solid #dadde9',
+    },
+  }))(Tooltip);
+
+  const Marker = ({ text }) => (
+    <HtmlTooltip placement="top" arrow
+      title={
+        <>
+          <Typography color="inherit">{text}</Typography>
+          <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
+          {"It's very engaging. Right?"}
+        </>
+      }
+    >
+      <RoomIcon onClick={() => setShowList(true)} className={classes.marker} />
+    </HtmlTooltip>
+  )
 
   // const handleApiLoaded = (map, maps) => {
   //   // use map and maps objects

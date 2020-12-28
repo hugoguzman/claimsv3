@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import GoogleMapReact from 'google-map-react';
 
@@ -9,14 +10,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
-    maxHeight: 1000,
+    height: 800,
   },
   paper: {
     display: 'flex',
     justifyContent: 'center',
     padding: theme.spacing(2),
     color: theme.palette.text.secondary,
-    height: '100vh', 
     width: '100%'
   },
   spinner: {
@@ -25,7 +25,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Map({ status = 'idle', data = undefined, error = null, isLoading = false }) {
+export default function Map({ status = 'idle', data = undefined, error = null, 
+  isFetching = false, setShowList = () => false 
+}) {
   const classes = useStyles();
   const [lat, setLat] = useState(null)
   const [lng, setLong] = useState(null)
@@ -37,13 +39,13 @@ export default function Map({ status = 'idle', data = undefined, error = null, i
     }
   }, [status, data])
 
-  const AnyReactComponent = ({ text }) => <div onClick={() => console.log('CLICKED')}>{text}</div>;
+  const Marker = ({ text }) => <div onClick={() => setShowList(true)}>{text}</div>;
 
   // const handleApiLoaded = (map, maps) => {
   //   // use map and maps objects
   // };
 
-  if (isLoading) return <CircularProgress size={80} thickness={3.0} className={classes.spinner}/>;
+  if (isFetching) return <CircularProgress size={80} thickness={3.0} className={classes.spinner}/>;
 
   if (error) return <Paper>{ "An error has occurred: " + error.message }</Paper>
 
@@ -61,13 +63,13 @@ export default function Map({ status = 'idle', data = undefined, error = null, i
             // yesIWantToUseGoogleMapApiInternals
             // onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
           >
-            <AnyReactComponent
+            <Marker
               lat={lat}
               lng={lng}
               text="My Marker"
             />
           </GoogleMapReact>
-          ) : <div>Please enter an address to search for claims</div>
+          ) : <Typography>Please enter an address to search for claims</Typography>
         }
       </Paper>
     </Grid>

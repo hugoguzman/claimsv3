@@ -17,12 +17,16 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   const [zip, setZip] = useState('')
+  const [showList, setShowList] = useState(false)
   const fetchFemaClaims = () => axios.get(process.env.REACT_APP_AWS_URL, { params: { zip } })
   const rcResp = useQuery('fetchFemaClaims', fetchFemaClaims, { enabled: false })
 
   console.log('rcResp', rcResp)
   useEffect(() => {
-    zip && rcResp.refetch();
+    if(zip) {
+      rcResp.refetch();
+      setShowList(false)
+    }
   }, [zip])
 
   return (
@@ -30,8 +34,8 @@ function App() {
       <Header />
       <ZipField setZip={setZip} />
       <Grid container spacing={3} className={classes.gridContainer}>
-        <Map {...rcResp} />
-        <List {...rcResp} />
+        <Map {...rcResp} setShowList={setShowList} />
+        <List {...rcResp} showList={showList} />
       </Grid>
     </div>
   );

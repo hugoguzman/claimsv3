@@ -72,6 +72,11 @@ export default function Map({ status = 'idle', data = undefined, error = null,
     },
   }))(Tooltip);
 
+  const pinClickHandler = () => {
+    setShowList(true)
+    setIsTooltipOpen(flag => !flag)
+  }
+
   const Marker = ({ text }) => (
     <HtmlTooltip
       interactive
@@ -84,7 +89,7 @@ export default function Map({ status = 'idle', data = undefined, error = null,
             {`Total Paid On Building Claims: $${buildingPaid}`}<br></br>
             {`Total Paid On Contents Claims: $${contentsPaid}`}
             <Typography color="secondary">
-              <Button style={{textTransform: 'capitalize'}} color="secondary" onClick={() => setShowList(true)}>Click here to see all claim details</Button>
+              <Button style={{textTransform: 'capitalize'}} color="secondary" onClick={pinClickHandler}>Click here to see all claim details</Button>
             </Typography>
         </>
       }

@@ -5,7 +5,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
 import { format } from 'date-fns'
 
 const useStyles = makeStyles(theme => ({
@@ -35,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 export default function ClaimsList({ claims }) {
   const classes = useStyles();
 
-  return claims.map((claim, index) => {
+  return claims.map((claim) => {
     const {
       n,
       censusTract,
@@ -67,62 +66,52 @@ export default function ClaimsList({ claims }) {
           <ListItemText
             primary={' Detailed Claim Info'}
             secondary={
-              <>
-                {/* <Typography
-                  component="span"
-                  variant="body2"
-                  className={classes.inline}
-                  color="textPrimary"
-                >
-                  {' Detailed Claim Info : '}
-                </Typography> */}
-                <div className={classes.gridRoot}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12} sm={4}>
-                      <span>{`Claims: ${n}`}</span>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <span>{`Date of Loss: ${format( new Date(dateOfLoss), 'MM/dd/yyyy')}`}</span>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <span>{`Paid On Building: ${amountPaidOnBuildingClaim}`}</span>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <span>{`floodZone: ${floodZone}`}</span>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <span>{`Paid On Contents: ${amountPaidOnContentsClaim}`}</span>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <span>{`Elevation Difference: ${elevationDifference}`}</span>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <span>{`Obstruction Type: ${obstructionType}`}</span>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <span>{`Elevation Certificate: ${elevationCertificateIndicator}`}</span>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <span>{`Primary Residence: ${primaryResidence}`}</span>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <span>{`Year of Loss: ${yearOfLoss}`}</span>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <span>{`County Code: ${countyCode}`}</span>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <span>{`Contents Coverage: ${totalContentsInsuranceCoverage}`}</span>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <span>{`Date Built: ${format( new Date(originalNBDate), 'MM/dd/yyyy')}`}</span>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <span>{`Building Coverage: ${totalBuildingInsuranceCoverage}`}</span>
-                    </Grid>
+              <div className={classes.gridRoot}>
+                <Grid container spacing={3}>
+                  <Grid item xs={12} sm={4}>
+                    <span>{`Claims: ${n}`}</span>
                   </Grid>
-                </div>
-              </>
+                  <Grid item xs={12} sm={4}>
+                    <span>{`Date of Loss: ${format( new Date(dateOfLoss), 'MM/dd/yyyy')}`}</span>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <span>{`Paid On Building: ${amountPaidOnBuildingClaim}`}</span>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <span>{`floodZone: ${floodZone}`}</span>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <span>{`Paid On Contents: ${amountPaidOnContentsClaim}`}</span>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <span>{`Elevation Difference: ${elevationDifference}`}</span>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <span>{`Obstruction Type: ${obstructionType}`}</span>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <span>{`Elevation Certificate: ${elevationCertificateIndicator}`}</span>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <span>{`Primary Residence: ${primaryResidence}`}</span>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <span>{`Year of Loss: ${yearOfLoss}`}</span>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <span>{`County Code: ${countyCode}`}</span>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <span>{`Contents Coverage: ${totalContentsInsuranceCoverage}`}</span>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <span>{`Date Built: ${format( new Date(originalNBDate), 'MM/dd/yyyy')}`}</span>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <span>{`Building Coverage: ${totalBuildingInsuranceCoverage}`}</span>
+                  </Grid>
+                </Grid>
+              </div>
             }
           />
         </ListItem>

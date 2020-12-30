@@ -2,12 +2,14 @@ import {useState, useEffect} from 'react'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import RoomIcon from '@material-ui/icons/Room';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
 import GoogleMapReact from 'google-map-react';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +39,7 @@ export default function Map({ status = 'idle', data = undefined, error = null,
   isFetching = false, setShowList = () => false 
 }) {
   const classes = useStyles();
+  const [isTooltipOpen, setIsTooltipOpen] = useState(false)
   const [lat, setLat] = useState(null)
   const [lng, setLong] = useState(null)
   const [totalClaims, setTotalClaims] = useState(0)
@@ -65,22 +68,28 @@ export default function Map({ status = 'idle', data = undefined, error = null,
       maxWidth: 300,
       fontSize: theme.typography.pxToRem(12),
       border: '1px solid #dadde9',
+      cursor: 'pointer'
     },
   }))(Tooltip);
 
   const Marker = ({ text }) => (
-    <HtmlTooltip placement="top"
+    <HtmlTooltip
+      interactive
+      open={isTooltipOpen}
+      placement="top"
       title={
         <>
             <Typography color="primary">{text}</Typography>
             {`Total claims: ${totalClaims}`}<br></br>
             {`Total Paid On Building Claims: $${buildingPaid}`}<br></br>
             {`Total Paid On Contents Claims: $${contentsPaid}`}
-            <Typography color="secondary">{"Click pin to see all claim details"}</Typography>
+            <Typography color="secondary">
+              <Button style={{textTransform: 'capitalize'}} color="secondary" onClick={() => setShowList(true)}>Click here to see all claim details</Button>
+            </Typography>
         </>
       }
     >
-      <RoomIcon onClick={() => setShowList(true)} className={classes.marker} />
+      <RoomIcon onClick={() => setIsTooltipOpen(flag => !flag)} className={classes.marker} />
     </HtmlTooltip>
   )
 

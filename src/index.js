@@ -38,11 +38,9 @@ const queryClient = new QueryClient()
 
 ReactDOM.render(
   <QueryClientProvider client={queryClient}>
-    <React.StrictMode>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </QueryClientProvider>,
   document.getElementById('root')
 );

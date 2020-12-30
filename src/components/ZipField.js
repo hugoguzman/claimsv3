@@ -70,7 +70,7 @@ export default function ZipField({ setZip }) {
               />
               <FormHelperText id="component-error-text">{errors?.zip?.message}</FormHelperText>
             </FormControl>
-              <Button onClick={handleSubmit(onSubmit)} size="small" variant="outlined" color="primary">
+              <Button onClick={handleSubmit(onSubmit)} size="small" variant="outlined" color="secondary">
                 Search
               </Button>
           </Paper>

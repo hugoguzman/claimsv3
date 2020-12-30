@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
   },
   marker: {
     color: red[500],
-    fontSize: '2rem'
+    fontSize: '2rem',
+    cursor: 'pointer'
   }
 }));
 
@@ -38,31 +39,44 @@ export default function Map({ status = 'idle', data = undefined, error = null,
   const classes = useStyles();
   const [lat, setLat] = useState(null)
   const [lng, setLong] = useState(null)
+  const [totalClaims, setTotalClaims] = useState(0)
+  const [buildingPaid, setBuildingPaid] = useState(0)
+  const [contentsPaid, setContentsPaid] = useState(0)
+
+  const getTotalNClaims = data => data.reduce((total, claim) => total += Number(claim.n), 0)
+  const getTotalBuildingPaid = data => data.reduce((total, claim) => total += !isNaN(Number(claim.amountPaidOnBuildingClaim)) ? Number(claim.amountPaidOnBuildingClaim) : 0, 0).toFixed(2)
+  const getTotalContentsPaid = data => data.reduce((total, claim) => total += !isNaN(Number(claim.amountPaidOnContentsClaim)) ? Number(claim.amountPaidOnBuildingClaim) : 0, 0).toFixed(2)
 
   useEffect(() => {
     if(status === 'success' && data?.data.length > 0) {
       setLat(Number(data?.data[0]?.latitude))
       setLong(Number(data?.data[0]?.longitude))
+      setTotalClaims(getTotalNClaims(data?.data))
+      setBuildingPaid(getTotalBuildingPaid(data?.data))
+      setContentsPaid(getTotalContentsPaid(data?.data))
     }
   }, [status, data])
 
   const HtmlTooltip = withStyles((theme) => ({
     tooltip: {
-      // backgroundColor: '#f5f5f9',
-      // color: 'rgba(0, 0, 0, 0.87)',
-      maxWidth: 220,
+      backgroundColor: theme.palette.common.white,
+      color: 'rgba(0, 0, 0, 0.87)',
+      boxShadow: theme.shadows[1],
+      maxWidth: 300,
       fontSize: theme.typography.pxToRem(12),
       border: '1px solid #dadde9',
     },
   }))(Tooltip);
 
   const Marker = ({ text }) => (
-    <HtmlTooltip placement="top" arrow
+    <HtmlTooltip placement="top"
       title={
         <>
-          <Typography color="inherit">{text}</Typography>
-          <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
-          {"It's very engaging. Right?"}
+            <Typography color="primary">{text}</Typography>
+            {`Total claims: ${totalClaims}`}<br></br>
+            {`Total Paid On Building Claims: $${buildingPaid}`}<br></br>
+            {`Total Paid On Contents Claims: $${contentsPaid}`}
+            <Typography color="secondary">{"Click pin to see all claim details"}</Typography>
         </>
       }
     >
@@ -95,7 +109,7 @@ export default function Map({ status = 'idle', data = undefined, error = null,
             <Marker
               lat={lat}
               lng={lng}
-              text="My Marker"
+              text="Overview"
             />
           </GoogleMapReact>
           ) : <Typography>Please enter an address to search for claims</Typography>

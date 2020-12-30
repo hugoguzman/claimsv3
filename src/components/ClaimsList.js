@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
@@ -15,9 +16,20 @@ const useStyles = makeStyles(theme => ({
       marginLeft: 0
     }
   },
+  gridRoot: {
+    flexGrow: 1,
+  },
   inline: {
     display: 'inline',
   },
+  '& .MuiTypography-displayBlock': {
+    marginBottom: '1rem'
+  },
+  '& .MuiGrid-spacing-xs-3 > .MuiGrid-item': {
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 12,
+  }
 }));
 
 export default function ClaimsList({ claims }) {
@@ -53,34 +65,63 @@ export default function ClaimsList({ claims }) {
       <List key={id} className={classes.root}>
         <ListItem alignItems="flex-start">
           <ListItemText
-            primary={`${reportedCity}, ${state}`}
+            primary={' Detailed Claim Info'}
             secondary={
               <>
-                <Typography
+                {/* <Typography
                   component="span"
                   variant="body2"
                   className={classes.inline}
                   color="textPrimary"
                 >
-                  {reportedZipcode + ' : '}
-                </Typography>
-                {`
-                  number: ${n}, 
-                  censusTract: ${censusTract}, 
-                  dateOfLoss: ${format( new Date(dateOfLoss), 'MM/dd/yyyy')}, 
-                  amountPaidOnBuildingClaim: ${amountPaidOnBuildingClaim}, 
-                  floodZone: ${floodZone}, 
-                  amountPaidOnContentsClaim: ${amountPaidOnContentsClaim}, 
-                  elevationDifference: ${elevationDifference}, 
-                  obstructionType: ${obstructionType}, 
-                  elevationCertificateIndicator: ${elevationCertificateIndicator}, 
-                  primaryResidence: ${primaryResidence}, 
-                  yearOfLoss: ${yearOfLoss}, 
-                  countyCode: ${countyCode}, 
-                  totalContentsInsuranceCoverage: ${totalContentsInsuranceCoverage}, 
-                  originalNBDate: ${format( new Date(originalNBDate), 'MM/dd/yyyy')}, 
-                  totalBuildingInsuranceCoverage: ${totalBuildingInsuranceCoverage}, 
-                `}
+                  {' Detailed Claim Info : '}
+                </Typography> */}
+                <div className={classes.gridRoot}>
+                  <Grid container spacing={3}>
+                    <Grid item xs={12} sm={4}>
+                      <span>{`Claims: ${n}`}</span>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <span>{`Date of Loss: ${format( new Date(dateOfLoss), 'MM/dd/yyyy')}`}</span>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <span>{`Paid On Building: ${amountPaidOnBuildingClaim}`}</span>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <span>{`floodZone: ${floodZone}`}</span>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <span>{`Paid On Contents: ${amountPaidOnContentsClaim}`}</span>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <span>{`Elevation Difference: ${elevationDifference}`}</span>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <span>{`Obstruction Type: ${obstructionType}`}</span>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <span>{`Elevation Certificate: ${elevationCertificateIndicator}`}</span>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <span>{`Primary Residence: ${primaryResidence}`}</span>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <span>{`Year of Loss: ${yearOfLoss}`}</span>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <span>{`County Code: ${countyCode}`}</span>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <span>{`Contents Coverage: ${totalContentsInsuranceCoverage}`}</span>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <span>{`Date Built: ${format( new Date(originalNBDate), 'MM/dd/yyyy')}`}</span>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <span>{`Building Coverage: ${totalBuildingInsuranceCoverage}`}</span>
+                    </Grid>
+                  </Grid>
+                </div>
               </>
             }
           />

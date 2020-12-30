@@ -5,6 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
+import { format } from 'date-fns'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -66,7 +67,7 @@ export default function ClaimsList({ claims }) {
                 {`
                   number: ${n}, 
                   censusTract: ${censusTract}, 
-                  dateOfLoss: ${dateOfLoss}, 
+                  dateOfLoss: ${format( new Date(dateOfLoss), 'MM/dd/yyyy')}, 
                   amountPaidOnBuildingClaim: ${amountPaidOnBuildingClaim}, 
                   floodZone: ${floodZone}, 
                   amountPaidOnContentsClaim: ${amountPaidOnContentsClaim}, 
@@ -77,7 +78,7 @@ export default function ClaimsList({ claims }) {
                   yearOfLoss: ${yearOfLoss}, 
                   countyCode: ${countyCode}, 
                   totalContentsInsuranceCoverage: ${totalContentsInsuranceCoverage}, 
-                  originalNBDate: ${originalNBDate}, 
+                  originalNBDate: ${format( new Date(originalNBDate), 'MM/dd/yyyy')}, 
                   totalBuildingInsuranceCoverage: ${totalBuildingInsuranceCoverage}, 
                 `}
               </>

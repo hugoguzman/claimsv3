@@ -13,22 +13,22 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
     '& .MuiDivider-inset': {
       marginLeft: 0
-    }
+    }, 
+    '& .MuiTypography-body1': {
+      paddingBottom: '1rem'
+    },
   },
   gridRoot: {
     flexGrow: 1,
+    '& .MuiGrid-spacing-xs-3 > .MuiGrid-item': {
+      paddingTop: 5,
+      paddingBottom: 5,
+      paddingLeft: 12,
+    }
   },
   inline: {
     display: 'inline',
   },
-  '& .MuiTypography-displayBlock': {
-    marginBottom: '1rem'
-  },
-  '& .MuiGrid-spacing-xs-3 > .MuiGrid-item': {
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 12,
-  }
 }));
 
 export default function ClaimsList({ claims }) {
@@ -64,7 +64,7 @@ export default function ClaimsList({ claims }) {
       <List key={id} className={classes.root}>
         <ListItem alignItems="flex-start">
           <ListItemText
-            primary={' Detailed Claim Info'}
+            primary={<span>Detailed Claim Info</span>}
             secondary={
               <div className={classes.gridRoot}>
                 <Grid container spacing={3}>

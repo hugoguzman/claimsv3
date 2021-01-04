@@ -2,7 +2,6 @@ import {useState, useEffect} from 'react'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import RoomIcon from '@material-ui/icons/Room';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -10,6 +9,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
 import GoogleMapReact from 'google-map-react';
 import { Button } from '@material-ui/core';
+import { formatter } from '../helpers'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,8 +47,8 @@ export default function Map({ status = 'idle', data = undefined, error = null,
   const [contentsPaid, setContentsPaid] = useState(0)
 
   const getTotalNClaims = data => data.reduce((total, claim) => total += Number(claim.n), 0)
-  const getTotalBuildingPaid = data => data.reduce((total, claim) => total += !isNaN(Number(claim.amountPaidOnBuildingClaim)) ? Number(claim.amountPaidOnBuildingClaim) : 0, 0).toFixed(2)
-  const getTotalContentsPaid = data => data.reduce((total, claim) => total += !isNaN(Number(claim.amountPaidOnContentsClaim)) ? Number(claim.amountPaidOnBuildingClaim) : 0, 0).toFixed(2)
+  const getTotalBuildingPaid = data => data.filter(claim => !isNaN(Number(claim.amountPaidOnBuildingClaim))).reduce((total, claim) => total += Number(claim.amountPaidOnBuildingClaim), 0).toFixed(2)
+  const getTotalContentsPaid = data => data.filter(claim => !isNaN(Number(claim.amountPaidOnContentsClaim))).reduce((total, claim) => total += Number(claim.amountPaidOnContentsClaim), 0).toFixed(2)
 
   useEffect(() => {
     if(status === 'success' && data?.data.length > 0) {
@@ -86,8 +86,8 @@ export default function Map({ status = 'idle', data = undefined, error = null,
         <>
             <Typography color="primary">{text}</Typography>
             {`Total claims: ${totalClaims}`}<br></br>
-            {`Total Paid On Building Claims: $${buildingPaid}`}<br></br>
-            {`Total Paid On Contents Claims: $${contentsPaid}`}
+            {`Total Paid On Building Claims: ${formatter.format(buildingPaid)}`}<br></br>
+            {`Total Paid On Contents Claims: ${formatter.format(contentsPaid)}`}
             <Typography color="secondary">
               <Button style={{textTransform: 'capitalize'}} color="secondary" onClick={pinClickHandler}>Click here to see all claim details</Button>
             </Typography>

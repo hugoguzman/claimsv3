@@ -6,6 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import { format } from 'date-fns'
+import { formatter } from '../helpers'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -75,13 +76,13 @@ export default function ClaimsList({ claims }) {
                     <span>{`Date of Loss: ${format( new Date(dateOfLoss), 'MM/dd/yyyy')}`}</span>
                   </Grid>
                   <Grid item xs={12} sm={4}>
-                    <span>{`Paid On Building: ${amountPaidOnBuildingClaim}`}</span>
+                    <span>{`Paid On Building: ${formatter.format(amountPaidOnBuildingClaim)}`}</span>
                   </Grid>
                   <Grid item xs={12} sm={4}>
                     <span>{`floodZone: ${floodZone}`}</span>
                   </Grid>
                   <Grid item xs={12} sm={4}>
-                    <span>{`Paid On Contents: ${amountPaidOnContentsClaim}`}</span>
+                    <span>{`Paid On Contents: ${formatter.format(amountPaidOnContentsClaim)}`}</span>
                   </Grid>
                   <Grid item xs={12} sm={4}>
                     <span>{`Elevation Difference: ${elevationDifference}`}</span>
@@ -102,13 +103,16 @@ export default function ClaimsList({ claims }) {
                     <span>{`County Code: ${countyCode}`}</span>
                   </Grid>
                   <Grid item xs={12} sm={4}>
-                    <span>{`Contents Coverage: ${totalContentsInsuranceCoverage}`}</span>
+                    <span>{`Contents Coverage: ${formatter.format(totalContentsInsuranceCoverage)}`}</span>
                   </Grid>
                   <Grid item xs={12} sm={4}>
                     <span>{`Date Built: ${format( new Date(originalNBDate), 'MM/dd/yyyy')}`}</span>
                   </Grid>
                   <Grid item xs={12} sm={4}>
-                    <span>{`Building Coverage: ${totalBuildingInsuranceCoverage}`}</span>
+                    <span>{`Building Coverage: ${formatter.format(totalBuildingInsuranceCoverage)}`}</span>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <span>{`Group Id: ${group_id}`}</span>
                   </Grid>
                 </Grid>
               </div>

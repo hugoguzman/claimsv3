@@ -39,11 +39,17 @@ const useStyles = makeStyles(theme => ({
 
 export default function ClaimsList({ claims }) {
   const classes = useStyles();
+  let groupIdArr = []
 
   return claims.map((claim) => {
     const {
-      n,
-      censusTract,
+      // n,
+      // censusTract,
+      // latitude,
+      // longitude,
+      // reportedCity,
+      // state,
+      // reportedZipcode,
       dateOfLoss,
       amountPaidOnBuildingClaim,
       id,
@@ -55,16 +61,13 @@ export default function ClaimsList({ claims }) {
       elevationCertificateIndicator, 
       primaryResidence,
       yearOfLoss, 
-      latitude,
-      longitude,
-      reportedCity,
-      state,
-      reportedZipcode,
       countyCode,
       totalContentsInsuranceCoverage,
       originalNBDate,
       totalBuildingInsuranceCoverage,
     } = claim
+
+    groupIdArr = groupIdArr.includes(group_id) ? [...groupIdArr, group_id] : [group_id]
 
     return (
       <List key={id} className={classes.root}>
@@ -72,7 +75,7 @@ export default function ClaimsList({ claims }) {
         <ListItem alignItems="flex-start">
           <Grid container spacing={3} className={classes.gridRoot}>
             <Grid item xs={12} sm={4}>
-              <span>{`Claims: ${n}`}</span>
+              <span className={classes.groupId}>{`Claim: #${groupIdArr.length}`}</span>
             </Grid>
             <Grid item xs={12} sm={4}>
               <span>{`Date of Loss: ${format( new Date(dateOfLoss), 'MM/dd/yyyy')}`}</span>

@@ -23,7 +23,7 @@ export default function List({ data = [], showList = false }) {
   const classes = useStyles();
 
   return (
-    <Grid item item sm={5} xs={12} className={classes.root}>
+    <Grid item sm={5} xs={12} className={classes.root}>
       <Paper className={classes.paper}>
         { showList && data?.data.length > 0 ? <ClaimsList claims={_sortBy(data?.data, cl => cl.group_id)}/> : <Typography>Enter a zipcode and click on the pin to see detailed info on duplicate claims</Typography>}
       </Paper>

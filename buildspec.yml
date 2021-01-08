@@ -4,4 +4,4 @@ phases:
         commands:
         - npm install
         - npm run build
-        - aws s3 sync dist s3://arn:aws:s3:::stagingclaims2.adaptationapps.com --delete
+        - aws s3 sync . s3://arn:aws:s3:::stagingclaims2.adaptationapps.com --delete

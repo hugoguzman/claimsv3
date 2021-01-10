@@ -91,7 +91,7 @@ export default function Map({
       setBuildingPaid(getTotalBuildingPaid(data?.data));
       setContentsPaid(getTotalContentsPaid(data?.data));
     }
-  }, [status, data]);
+  }, [status, zip, data]);
 
   const HtmlTooltip = withStyles((theme) => ({
     tooltip: {

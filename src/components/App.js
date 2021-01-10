@@ -42,6 +42,7 @@ function App() {
       <ZipField setZip={setZip} />
       <Grid container spacing={3} className={classes.gridContainer}>
         <Map
+          zip={zip}
           status={status}
           data={data}
           error={error}

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { cyan, lightBlue } from '@material-ui/core/colors';
 import App from './components/App';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -9,7 +9,7 @@ const theme = createMuiTheme({
   palette: {
     primary: { main: cyan[500], light: cyan[200] }, // Purple and green play nicely together.
     secondary: { main: lightBlue[500], light: lightBlue[200] }, // This is just green.A700 as hex.
-  }, 
+  },
   typography: {
     // Use the system font instead of the default Roboto font.
     fontFamily: [
@@ -34,7 +34,7 @@ const theme = createMuiTheme({
   },
 });
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 ReactDOM.render(
   <QueryClientProvider client={queryClient}>

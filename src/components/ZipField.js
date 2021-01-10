@@ -7,9 +7,9 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import SearchIcon from '@material-ui/icons/Search';
-import { useForm } from 'react-hook-form'
-import { object, string } from "yup";
-import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form';
+import { object, string } from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,29 +33,33 @@ const useStyles = makeStyles((theme) => ({
 export default function ZipField({ setZip }) {
   const classes = useStyles();
 
-  const validationSchema = 
-        object().shape({
-          zip: string().matches(/^[0-9]{5}$/, 'Must be exactly 5 digits')
-        })
-      .required()
-  
+  const validationSchema = object()
+    .shape({
+      zip: string().matches(/^[0-9]{5}$/, 'Must be exactly 5 digits'),
+    })
+    .required();
+
   const { errors, register, handleSubmit, reset } = useForm({
     mode: 'onBlur',
-    defaultValues: { zip: '' }, 
+    defaultValues: { zip: '' },
     resolver: yupResolver(validationSchema),
-    reValidateMode: 'onBlur'
-  })
+    reValidateMode: 'onBlur',
+  });
 
   const onSubmit = (data, e) => {
-    reset()
-    setZip(data?.zip)
-  }
+    reset();
+    setZip(data?.zip);
+  };
 
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Paper component="form" onSubmit={handleSubmit(onSubmit)} className={classes.root}>
+          <Paper
+            component="form"
+            onSubmit={handleSubmit(onSubmit)}
+            className={classes.root}
+          >
             <IconButton className={classes.iconButton} aria-label="zip">
               <SearchIcon />
             </IconButton>
@@ -68,11 +72,18 @@ export default function ZipField({ setZip }) {
                 placeholder="Enter Zipcode"
                 inputProps={{ 'aria-label': 'search by zip', maxLength: 5 }}
               />
-              <FormHelperText id="component-error-text">{errors?.zip?.message}</FormHelperText>
+              <FormHelperText id="component-error-text">
+                {errors?.zip?.message}
+              </FormHelperText>
             </FormControl>
-              <Button onClick={handleSubmit(onSubmit)} size="small" variant="outlined" color="secondary">
-                Search
-              </Button>
+            <Button
+              onClick={handleSubmit(onSubmit)}
+              size="small"
+              variant="outlined"
+              color="secondary"
+            >
+              Search
+            </Button>
           </Paper>
         </Grid>
       </Grid>
